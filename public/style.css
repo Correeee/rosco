@@ -178,6 +178,7 @@ button:disabled {
 #question {
   max-width: 450px;
   text-align: center;
+  margin: 5px 0px;
 }
 
 #feedback {
@@ -337,7 +338,7 @@ button:disabled {
 
   /* ROSCO */
   .rosco-container {
-    margin: 20px auto;
+    margin: 10px auto;
   }
 
   .rosco-letter {
@@ -470,4 +471,10 @@ button.disabled {
 nav {
   overscroll-behavior: contain;
   touch-action: none;
+}
+
+.game-buttons{
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
 }
