@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'Games';
   src: url('fonts/games/games.woff2') format('woff2'),
-       url('fonts/games/games.ttf') format('truetype');
+    url('fonts/games/games.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -17,13 +17,9 @@
 body {
   margin: 0;
   font-family: "Games", -apple-system, BlinkMacSystemFont, sans-serif;
-  background-image: url(/images/background.webp);
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-color: black;
+  background: radial-gradient(circle at top, #1e1f26, #0e0f14);
   color: #111;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,8 +30,8 @@ body {
 ========================= */
 
 .container {
-  width: 90vw;
-  margin: 0;
+  width: 550px;
+  margin: 40px auto;
   background: #ffffff;
   padding: 26px;
   border-radius: 20px;
@@ -110,9 +106,8 @@ button:hover:not(:disabled) {
   filter: brightness(1.05);
 }
 
-button:disabled,
-button.disabled {
-  opacity: .5;
+button:disabled {
+  opacity: .45;
   cursor: not-allowed;
   background: #ccc;
   color: #666;
@@ -180,10 +175,6 @@ button.disabled {
   color: #000;
 }
 
-/* =========================
-   TEXTO
-========================= */
-
 #question {
   max-width: 450px;
   text-align: center;
@@ -213,8 +204,7 @@ button.disabled {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow:
-    inset 0 0 0 2px rgba(255, 255, 255, .1),
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .1),
     0 10px 30px rgba(0, 0, 0, .5);
 }
 
@@ -242,6 +232,7 @@ button.disabled {
 }
 
 .player-name {
+  font-family: 'Games', system-ui, sans-serif;
   margin-bottom: 6px;
   letter-spacing: 1px;
 }
@@ -281,8 +272,15 @@ button.disabled {
 }
 
 @keyframes popIn {
-  from { transform: scale(.85); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+  from {
+    transform: scale(.85);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .final-scores {
@@ -298,9 +296,118 @@ button.disabled {
   font-size: 22px;
 }
 
-/* =========================
-   OTROS
-========================= */
+.end-card button {
+  margin-top: 20px;
+  padding: 14px 22px;
+  font-size: 16px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #4caf50, #2e7d32);
+}
+
+
+
+/* MODIFICACIONES */
+
+#turn,
+.player-name {
+  color: red;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+
+
+@media (max-width: 480px) {
+
+  .container {
+    min-width: 90vw;
+    margin: 0;
+    min-height: 100vh;
+    border-radius: 0;
+    padding: 20px 16px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  h2 {
+    font-size: 16px;
+  }
+
+  /* ROSCO */
+  .rosco-container {
+    margin: 20px auto;
+  }
+
+  .rosco-letter {
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
+  }
+
+  .center-letter {
+    width: 70px;
+    height: 70px;
+    font-size: 32px;
+  }
+
+  /* INPUT */
+  input {
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  /* BOTONES */
+  button {
+    margin: 6px 0;
+    padding: 14px;
+    font-size: 14px;
+  }
+
+  #btnAnswer,
+  #btnPass {
+    width: 100%;
+  }
+
+  /* SCOREBOARD */
+  .scoreboard {
+    flex-direction: row;
+    gap: 12px;
+  }
+
+  .player-score {
+    min-width: auto;
+    width: 100%;
+    font-size: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .player-name {
+    font-size: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+  }
+
+  .player-points {
+    font-size: 12px;
+  }
+
+  /* END SCREEN */
+  .end-card {
+    width: 90%;
+    padding: 24px;
+  }
+
+}
+
 
 .correct-answer {
   margin-top: 10px;
@@ -309,6 +416,30 @@ button.disabled {
   background: #fff3cd;
   color: #856404;
   font-weight: 700;
+  animation: fadeIn .2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* FONDOS */
+
+body {
+  background-image: url(/images/background.webp);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: black;
 }
 
 #logo {
@@ -321,97 +452,22 @@ button.disabled {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 80vh;
+  height: 80vh;
 }
 
 #btnMute {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 0;
+  right: 0;
 }
 
-/* =========================
-   MOBILE FIX COMPLETO
-========================= */
-
-@media (max-width: 480px) {
-
-  body {
-    align-items: flex-start;
-  }
-
-  .container {
-    width: 100%;
-    min-height: 100vh;
-    margin: 0;
-    border-radius: 0;
-    padding: 16px;
-    box-shadow: none;
-  }
-  
-
-  h1 { font-size: 22px; }
-  h2 { font-size: 16px; }
-
-  .rosco-container {
-    width: 260px;
-    height: 260px;
-  }
-
-  .rosco-letter {
-    width: 28px;
-    height: 28px;
-    font-size: 11px;
-  }
-
-  .center-letter {
-    width: 64px;
-    height: 64px;
-    font-size: 30px;
-  }
-
-  #question {
-    max-width: 100%;
-    font-size: 14px;
-    line-height: 1.4;
-  }
-
-  input {
-    font-size: 16px;
-  }
-
-  button {
-    width: 100%;
-    padding: 14px;
-    font-size: 15px;
-    margin: 6px 0;
-  }
-
-  .scoreboard {
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .player-score {
-    width: 100%;
-    padding: 10px 12px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .player-name { font-size: 13px; }
-  .player-points { font-size: 16px; }
-  .player-time { font-size: 12px; }
-
-  .end-card {
-    width: 90%;
-    padding: 24px;
-  }
-
-  nav {
-    touch-action: auto;
-  }
-
+button.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
+
+nav {
+  overscroll-behavior: contain;
+  touch-action: none;
+}
