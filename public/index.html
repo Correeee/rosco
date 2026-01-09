@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Juego tipo Pasapalabra</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>El rosco</h1>
+
+        <!-- LOBBY -->
+        <div id="lobby">
+            <input id="name" placeholder="Tu nombre">
+            <input id="room" placeholder="Código de sala">
+
+            <div class="lobby-buttons">
+                <button onclick="createRoom()">Crear sala</button>
+                <button id="btnJoin" onclick="joinRoom()">Unirse</button>
+            </div>
+
+            <p id="info"></p>
+        </div>
+
+        <!-- JUEGO -->
+        <div id="game" class="hidden">
+
+            <h2>Turno de: <span id="turn"></span></h2>
+            <p id="question"></p>
+            <p id="correctAnswer" class="hidden"></p>
+
+
+
+            <div class="rosco-container">
+
+                <div id="rosco"></div>
+                <div class="center-letter" id="currentLetter">A</div>
+            </div>
+            <div id="scoreboard" class="scoreboard"></div>
+
+            <input id="answer" placeholder="Escribí tu respuesta">
+
+            <div class="game-buttons">
+                <button id="btnAnswer" onclick="sendAnswer()">Responder</button>
+                <button id="btnPass" onclick="pasapalabra()">Pasapalabra</button>
+            </div>
+            <div>
+                <button id="btnMute" class="mute-btn">🔊 Sonido</button>
+            </div>
+
+            <div id="players"></div>
+
+        </div>
+    </div>
+
+    <!-- PANTALLA FINAL -->
+    <div id="endScreen" class="end-screen hidden">
+        <div class="end-card">
+            <h1 id="winnerTitle">🏆 Ganador</h1>
+
+            <div id="finalScores" class="final-scores"></div>
+
+            <button onclick="restartGame()">🔁 Jugar otra vez</button>
+        </div>
+    </div>
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

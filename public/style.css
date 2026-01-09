@@ -1,0 +1,404 @@
+@font-face {
+  font-family: 'Games';
+  src: url('fonts/games/games.woff2') format('woff2'),
+       url('fonts/games/games.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* =========================
+   RESET + BASE
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Games", -apple-system, BlinkMacSystemFont, sans-serif;
+  background: radial-gradient(circle at top, #1e1f26, #0e0f14);
+  color: #111;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* =========================
+   CONTENEDOR
+========================= */
+
+.container {
+  width: 550px;
+  margin: 40px auto;
+  background: #ffffff;
+  padding: 26px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 30px 80px rgba(0,0,0,.35);
+}
+
+/* =========================
+   TITULOS
+========================= */
+
+h1,
+h2 {
+  font-family: 'Games', system-ui, sans-serif;
+  letter-spacing: 2px;
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+h2 {
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+/* =========================
+   INPUTS
+========================= */
+
+input {
+  width: 100%;
+  padding: 14px 16px;
+  margin: 8px 0;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  font-size: 15px;
+  outline: none;
+  transition: all .2s ease;
+}
+
+input:focus {
+  border-color: #2196f3;
+  box-shadow: 0 0 0 3px rgba(33,150,243,.15);
+}
+
+#answer {
+  text-transform: uppercase;
+}
+
+/* =========================
+   BOTONES
+========================= */
+
+button {
+  font-family: 'Games', system-ui, sans-serif;
+  padding: 12px 18px;
+  margin: 6px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  letter-spacing: 1px;
+  background: linear-gradient(135deg, #2196f3, #1976d2);
+  color: #fff;
+  transition: all .2s ease;
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+button:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+  background: #ccc;
+  color: #666;
+}
+
+/* =========================
+   ESTADOS
+========================= */
+
+.hidden {
+  display: none !important;
+}
+
+/* =========================
+   ROSCO
+========================= */
+
+.rosco-container {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  margin: 25px auto;
+}
+
+#rosco {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.rosco-letter {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Games', system-ui, sans-serif;
+  font-size: 14px;
+  transition: all .25s ease;
+}
+
+.rosco-letter.active {
+  background: #2196f3;
+  color: #fff;
+  transform: scale(1.25);
+  box-shadow: 0 6px 20px rgba(33,150,243,.5);
+}
+
+.rosco-letter.correct {
+  background: #4caf50;
+  color: #fff;
+}
+
+.rosco-letter.wrong {
+  background: #f44336;
+  color: #fff;
+}
+
+.rosco-letter.pass {
+  background: #f4c430;
+  color: #000;
+}
+
+#question{
+  max-width: 450px;
+  text-align: center;
+}
+#feedback{
+  color: black;
+}
+
+/* =========================
+   LETRA CENTRAL
+========================= */
+
+.center-letter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 86px;
+  height: 86px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: linear-gradient(135deg, #111, #333);
+  color: #fff;
+  font-family: 'Games', system-ui, sans-serif;
+  font-size: 42px;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,.1),
+              0 10px 30px rgba(0,0,0,.5);
+}
+
+/* =========================
+   SCOREBOARD
+========================= */
+
+.scoreboard {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 25px 0;
+}
+
+.player-score {
+  background: #f8fafc;
+  border-radius: 14px;
+  padding: 14px 18px;
+  min-width: 150px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.12);
+}
+
+.player-score.active {
+  border: 2px solid #2196f3;
+}
+
+.player-name {
+  font-family: 'Games', system-ui, sans-serif;
+  margin-bottom: 6px;
+  letter-spacing: 1px;
+}
+
+.player-points {
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.player-time {
+  font-size: 14px;
+  opacity: .7;
+}
+
+/* =========================
+   END SCREEN
+========================= */
+
+.end-screen {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.end-card {
+  background: #fff;
+  border-radius: 22px;
+  padding: 32px 40px;
+  min-width: 320px;
+  text-align: center;
+  box-shadow: 0 30px 80px rgba(0,0,0,.5);
+  animation: popIn .4s ease;
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(.85);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.final-scores {
+  margin: 20px 0;
+}
+
+.final-player {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.final-player strong {
+  font-size: 22px;
+}
+
+.end-card button {
+  margin-top: 20px;
+  padding: 14px 22px;
+  font-size: 16px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #4caf50, #2e7d32);
+}
+
+
+
+/* MODIFICACIONES */
+
+#turn, .player-name{
+    color: red;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+
+
+@media (max-width: 480px) {
+
+  .container {
+    max-width: 100%;
+    margin: 0;
+    min-height: 100vh;
+    border-radius: 0;
+    padding: 20px 16px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  h2 {
+    font-size: 16px;
+  }
+
+  /* ROSCO */
+  .rosco-container {
+    margin: 20px auto;
+  }
+
+  .rosco-letter {
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
+  }
+
+  .center-letter {
+    width: 70px;
+    height: 70px;
+    font-size: 32px;
+  }
+
+  /* INPUT */
+  input {
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  /* BOTONES */
+  button {
+    width: 100%;
+    margin: 6px 0;
+    padding: 14px;
+    font-size: 14px;
+  }
+
+  #btnAnswer,
+  #btnPass {
+    width: 100%;
+  }
+
+  /* SCOREBOARD */
+  .scoreboard {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .player-score {
+    min-width: auto;
+    width: 100%;
+  }
+
+  /* END SCREEN */
+  .end-card {
+    width: 90%;
+    padding: 24px;
+  }
+
+}
+
+
+.correct-answer {
+  margin-top: 10px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #fff3cd;
+  color: #856404;
+  font-weight: 700;
+  animation: fadeIn .2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
