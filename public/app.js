@@ -40,7 +40,7 @@ let feedback = document.getElementById("feedback");
 if (!feedback && questionElem) {
     feedback = document.createElement("p");
     feedback.id = "feedback";
-    feedback.style.margin = "10px 0 0";
+    feedback.style.margin = "5px 0 0";
     feedback.style.fontWeight = "800";
     feedback.style.minHeight = "24px";
     questionElem.insertAdjacentElement("afterend", feedback);
@@ -259,28 +259,46 @@ socket.on("error-msg", (msg) => alert(msg));
 // ROSCO
 // =========================
 function createRosco() {
-    const rosco = document.getElementById("rosco");
-    if (!rosco) return;
-    rosco.innerHTML = "";
+  const rosco = document.getElementById("rosco");
+  if (!rosco) return;
 
-    const radius = 140;
-    const center = 160;
+  rosco.innerHTML = "";
 
-    letters.forEach((letter, index) => {
-        const angle = (index / letters.length) * 2 * Math.PI - Math.PI / 2;
-        const x = center + radius * Math.cos(angle) - 18;
-        const y = center + radius * Math.sin(angle) - 18;
+  // 🔹 tamaño real del contenedor
+  const size = rosco.offsetWidth;
 
-        const el = document.createElement("div");
-        el.className = "rosco-letter";
-        el.innerText = letter;
-        el.style.left = `${x}px`;
-        el.style.top = `${y}px`;
-        el.dataset.index = index;
+  // 🔹 centro dinámico
+  const center = size / 2;
 
-        rosco.appendChild(el);
-    });
+  // 🔹 radio dinámico (más cerca en mobile)
+  const radius = center * 0.65;
+
+  // 🔹 tamaño real de cada letra
+  const letterSize = document.querySelector(".rosco-letter")
+    ? document.querySelector(".rosco-letter").offsetWidth
+    : 28;
+
+  letters.forEach((letter, index) => {
+    const angle =
+      (index / letters.length) * 2 * Math.PI - Math.PI / 2;
+
+    const x =
+      center + radius * Math.cos(angle) - letterSize / 2;
+
+    const y =
+      center + radius * Math.sin(angle) - letterSize / 2;
+
+    const el = document.createElement("div");
+    el.className = "rosco-letter";
+    el.innerText = letter;
+    el.style.left = `${x}px`;
+    el.style.top = `${y}px`;
+    el.dataset.index = index;
+
+    rosco.appendChild(el);
+  });
 }
+
 
 function updateRosco(letterIndex, results = {}, passed = {}) {
     document.querySelectorAll(".rosco-letter").forEach((el) => {

@@ -318,7 +318,16 @@ button:disabled {
 
 
 
+
 @media (max-width: 480px) {
+
+
+  
+#logo {
+  width: 80px;
+  height: 80px;
+}
+  
 
   .container {
     min-width: 90vw;
@@ -338,7 +347,7 @@ button:disabled {
 
   /* ROSCO */
   .rosco-container {
-    margin: 10px auto;
+    margin: 0px auto;
   }
 
   .rosco-letter {
@@ -410,6 +419,7 @@ button:disabled {
 }
 
 
+
 .correct-answer {
   margin-top: 10px;
   padding: 10px 14px;
@@ -478,3 +488,5 @@ nav {
   flex-direction: row;
   gap: 5px;
 }
+
+
