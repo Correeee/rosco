@@ -271,7 +271,7 @@ function createRosco() {
   const center = size / 2;
 
   // 🔹 radio dinámico (más cerca en mobile)
-  const radius = center * 0.50;
+  const radius = center * 0.7;
 
   // 🔹 tamaño real de cada letra
   const letterSize = document.querySelector(".rosco-letter")

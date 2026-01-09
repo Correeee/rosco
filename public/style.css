@@ -316,18 +316,20 @@ button:disabled {
   font-weight: bold;
 }
 
+@media screen and (max-width: 525px) {
+  #logo {
+    width: 30px;
+    height: 30px;
+  }
 
-
-
-@media (max-width: 480px) {
-
-
-  
-#logo {
-  width: 80px;
-  height: 80px;
+  #question{
+    font-size: 14px;
+  }
 }
-  
+
+
+@media screen and (max-width: 480px) {
+
 
   .container {
     min-width: 90vw;
@@ -350,6 +352,22 @@ button:disabled {
     margin: 0px auto;
   }
 
+.rosco-container {
+  position: relative;
+  width: 100%;
+  max-width: 260px;     /* 👈 probá 240–280 */
+  aspect-ratio: 1 / 1; /* 👈 cuadrado perfecto */
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#rosco {
+  position: absolute;
+  inset: 0;
+}
+
   .rosco-letter {
     width: 30px;
     height: 30px;
@@ -357,9 +375,9 @@ button:disabled {
   }
 
   .center-letter {
-    width: 70px;
-    height: 70px;
-    font-size: 32px;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
   }
 
   /* INPUT */
@@ -454,8 +472,8 @@ body {
 }
 
 #logo {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
 }
 
 #game {
@@ -483,10 +501,8 @@ nav {
   touch-action: none;
 }
 
-.game-buttons{
+.game-buttons {
   display: flex;
   flex-direction: row;
   gap: 5px;
 }
-
-
