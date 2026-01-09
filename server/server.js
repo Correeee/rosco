@@ -124,20 +124,43 @@ io.on("connection", socket => {
     const ok = answer.trim().toUpperCase() === q.answer.toUpperCase();
 
     if (ok) {
+
       g.results[idx] = "correct";
       player.score += 1;
       delete g.passed[idx];
 
-      const next = getNextPendingIndex(g, idx);
-      if (next === null) {
-        g.finished = true;
-      } else {
-        g.letterIndex = next;
-      }
+      // 🔹 NUEVO: mostrar respuesta también cuando es correcta
+      g.paused = true;
+      g.reveal = {
+        index: idx,
+        answer: q.answer,
+        correct: true
+      };
 
       emit(roomId);
+
+      setTimeout(() => {
+        const r = rooms[roomId];
+        if (!r) return;
+
+        const game = r.game;
+        game.paused = false;
+        game.reveal = null;
+
+        const next = getNextPendingIndex(game, idx);
+
+        if (next === null) {
+          game.finished = true;
+        } else {
+          game.letterIndex = next;
+        }
+
+        emit(roomId);
+      }, REVEAL_MS);
+
       return;
     }
+
 
     // ❌ incorrecta
     g.results[idx] = "wrong";
@@ -223,7 +246,7 @@ setInterval(() => {
 // --- CORRECCIÓN DE PUERTO ---
 // Hostinger asigna el puerto en process.env.PORT. 
 // Si pones solo 3000 fallará.
-const port = process.env.PORT || 3000; 
+const port = process.env.PORT || 3000;
 
 server.listen(port, () => {
   console.log(`🚀 Servidor corriendo en puerto ${port}`);

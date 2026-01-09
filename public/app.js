@@ -259,44 +259,44 @@ socket.on("error-msg", (msg) => alert(msg));
 // ROSCO
 // =========================
 function createRosco() {
-  const rosco = document.getElementById("rosco");
-  if (!rosco) return;
+    const rosco = document.getElementById("rosco");
+    if (!rosco) return;
 
-  rosco.innerHTML = "";
+    rosco.innerHTML = "";
 
-  // 🔹 tamaño real del contenedor
-  const size = rosco.offsetWidth;
+    // 🔹 tamaño real del contenedor
+    const size = rosco.offsetWidth;
 
-  // 🔹 centro dinámico
-  const center = size / 2;
+    // 🔹 centro dinámico
+    const center = size / 2;
 
-  // 🔹 radio dinámico (más cerca en mobile)
-  const radius = center * 0.7;
+    // 🔹 radio dinámico (más cerca en mobile)
+    const radius = center * 0.7;
 
-  // 🔹 tamaño real de cada letra
-  const letterSize = document.querySelector(".rosco-letter")
-    ? document.querySelector(".rosco-letter").offsetWidth
-    : 28;
+    // 🔹 tamaño real de cada letra
+    const letterSize = document.querySelector(".rosco-letter")
+        ? document.querySelector(".rosco-letter").offsetWidth
+        : 28;
 
-  letters.forEach((letter, index) => {
-    const angle =
-      (index / letters.length) * 2 * Math.PI - Math.PI / 2;
+    letters.forEach((letter, index) => {
+        const angle =
+            (index / letters.length) * 2 * Math.PI - Math.PI / 2;
 
-    const x =
-      center + radius * Math.cos(angle) - letterSize / 2;
+        const x =
+            center + radius * Math.cos(angle) - letterSize / 2;
 
-    const y =
-      center + radius * Math.sin(angle) - letterSize / 2;
+        const y =
+            center + radius * Math.sin(angle) - letterSize / 2;
 
-    const el = document.createElement("div");
-    el.className = "rosco-letter";
-    el.innerText = letter;
-    el.style.left = `${x}px`;
-    el.style.top = `${y}px`;
-    el.dataset.index = index;
+        const el = document.createElement("div");
+        el.className = "rosco-letter";
+        el.innerText = letter;
+        el.style.left = `${x}px`;
+        el.style.top = `${y}px`;
+        el.dataset.index = index;
 
-    rosco.appendChild(el);
-  });
+        rosco.appendChild(el);
+    });
 }
 
 
@@ -377,32 +377,42 @@ function render({ players, game: gameState }) {
     const q = gameState.questions?.[letter];
 
     const questionText = q?.question || "";
-    const revealAnswer = gameState.paused && gameState.reveal?.answer ? gameState.reveal.answer : null;
+    const revealAnswer =
+        gameState.paused && gameState.reveal?.answer
+            ? gameState.reveal.answer
+            : null;
+
 
     // Turno
     turn.innerText = (players[gameState.turn]?.name || "");
 
     // Pregunta / Feedback
     if (revealAnswer) {
-        questionElem.innerHTML = `❌ Incorrecto`;
+
+        const isCorrect = gameState.reveal?.correct === true;
+
+        questionElem.innerHTML = isCorrect ? "✅ Correcto" : "❌ Incorrecto";
+
         if (feedback) {
             feedback.innerHTML = `Respuesta correcta: <strong>${revealAnswer}</strong>`;
-            feedback.style.color = "#f44336";
+            feedback.style.color = isCorrect ? "#4caf50" : "#f44336";
         }
+
     } else {
         questionElem.innerText = questionText;
+
         if (feedback) {
             feedback.innerHTML = "";
             feedback.style.color = "";
         }
 
-        // TTS solo si cambió la letra/pregunta (no en cada tick del timer)
         const speakKey = `${letter}|${questionText}`;
         if (!gameState.finished && questionText && speakKey !== lastSpokenKey) {
             lastSpokenKey = speakKey;
             speak(`Letra ${letter}. ${questionText}`);
         }
     }
+
 
     // Scoreboard
     renderScoreboard(players, gameState);
