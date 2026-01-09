@@ -389,7 +389,8 @@ function render({ players, game: gameState }) {
     // Pregunta / Feedback
     if (revealAnswer) {
 
-        const isCorrect = gameState.reveal?.correct === true;
+        const revealIndex = gameState.reveal?.index;
+        const isCorrect = revealIndex != null && gameState.results?.[revealIndex] === "correct";
 
         questionElem.innerHTML = isCorrect ? "✅ Correcto" : "❌ Incorrecto";
 
@@ -412,6 +413,7 @@ function render({ players, game: gameState }) {
             speak(`Letra ${letter}. ${questionText}`);
         }
     }
+
 
 
     // Scoreboard
