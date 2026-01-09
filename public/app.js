@@ -380,7 +380,7 @@ function render({ players, game: gameState }) {
     const revealAnswer = gameState.paused && gameState.reveal?.answer ? gameState.reveal.answer : null;
 
     // Turno
-    turn.innerText = "Turno de: " + (players[gameState.turn]?.name || "");
+    turn.innerText = (players[gameState.turn]?.name || "");
 
     // Pregunta / Feedback
     if (revealAnswer) {
