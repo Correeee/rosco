@@ -11,7 +11,8 @@ const io = new Server(server);
 // --- CORRECCIÓN DE RUTA ---
 // Usamos path.join para asegurar que encuentre la carpeta 'public'
 // Asumiendo que subiste la carpeta 'public' al mismo nivel que server.js
-app.use(express.static(path.join(__dirname, 'public'))); 
+app.use(express.static(path.join(__dirname, '../public')));
+
 
 // Si tienes la carpeta public 'atrás' (como en tu local), usa esta línea en su lugar:
 // app.use(express.static(path.join(__dirname, '../public')));
