@@ -51,15 +51,15 @@ if (!feedback && questionElem) {
 // =========================
 
 const SOUND_VOLUMES = {
-  correct: 0.1,
-  wrong: 0.7,
-  pass: 0.6
+    correct: 0.1,
+    wrong: 0.7,
+    pass: 0.6
 };
 
 const sounds = {
-  correct: new Audio("sounds/correct.mp3"),
-  wrong: new Audio("sounds/wrong.mp3"),
-  pass: new Audio("sounds/pass.mp3")
+    correct: new Audio("sounds/correct.mp3"),
+    wrong: new Audio("sounds/wrong.mp3"),
+    pass: new Audio("sounds/pass.mp3")
 };
 
 sounds.correct.volume = SOUND_VOLUMES.correct;
@@ -78,26 +78,26 @@ backgroundMusic.preload = "auto";
 // AUDIO UNLOCK
 // =========================
 function unlockAudio() {
-  if (audioUnlocked) return;
+    if (audioUnlocked) return;
 
-  Object.entries(sounds).forEach(([key, sound]) => {
-    const vol = SOUND_VOLUMES[key];
-    sound.volume = 0;
-    sound.play().then(() => {
-      sound.pause();
-      sound.currentTime = 0;
-      sound.volume = vol; // ✅ vuelve al volumen correcto
-    }).catch(() => {});
-  });
+    Object.entries(sounds).forEach(([key, sound]) => {
+        const vol = SOUND_VOLUMES[key];
+        sound.volume = 0;
+        sound.play().then(() => {
+            sound.pause();
+            sound.currentTime = 0;
+            sound.volume = vol; // ✅ vuelve al volumen correcto
+        }).catch(() => { });
+    });
 
-  backgroundMusic.volume = 0;
-  backgroundMusic.play().then(() => {
-    backgroundMusic.pause();
-    backgroundMusic.currentTime = 0;
-    backgroundMusic.volume = 0.12;
-  }).catch(() => {});
+    backgroundMusic.volume = 0;
+    backgroundMusic.play().then(() => {
+        backgroundMusic.pause();
+        backgroundMusic.currentTime = 0;
+        backgroundMusic.volume = 0.12;
+    }).catch(() => { });
 
-  audioUnlocked = true;
+    audioUnlocked = true;
 }
 
 
@@ -311,7 +311,7 @@ function renderScoreboard(players, gameState) {
 
         div.innerHTML = `
       <div class="player-name">${p.name}</div>
-      <div class="player-points">⭐ ${p.score} puntos</div>
+      <div class="player-points">${p.score} puntos</div>
       <div class="player-time">⏱️ ${Math.max(0, gameState.timer[i])}s</div>
     `;
 
@@ -413,3 +413,17 @@ function render({ players, game: gameState }) {
         backgroundMusic.pause();
     }
 }
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const nav = document.querySelector("nav");
+    if (!nav) return;
+
+    nav.addEventListener(
+        "touchmove",
+        e => {
+            e.preventDefault();
+        },
+        { passive: false }
+    );
+});

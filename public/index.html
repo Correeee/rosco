@@ -3,14 +3,15 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Juego tipo Pasapalabra</title>
+    <title>El Rosco</title>
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
     <div class="container">
-        <h1>El rosco</h1>
+        <img src="/images/logo.png" alt="" id="logo">
 
         <!-- LOBBY -->
         <div id="lobby">
@@ -22,17 +23,17 @@
                 <button id="btnJoin" onclick="joinRoom()">Unirse</button>
             </div>
 
-            <p id="info"></p>
+            <h5 id="info">Desarrollado por Maximiliano Correa</h5>
         </div>
 
         <!-- JUEGO -->
         <div id="game" class="hidden">
-
+            <div>
+                <button id="btnMute" class="mute-btn">🔊 Sonido</button>
+            </div>
             <h2>Turno de: <span id="turn"></span></h2>
             <p id="question"></p>
             <p id="correctAnswer" class="hidden"></p>
-
-
 
             <div class="rosco-container">
 
@@ -47,9 +48,7 @@
                 <button id="btnAnswer" onclick="sendAnswer()">Responder</button>
                 <button id="btnPass" onclick="pasapalabra()">Pasapalabra</button>
             </div>
-            <div>
-                <button id="btnMute" class="mute-btn">🔊 Sonido</button>
-            </div>
+
 
             <div id="players"></div>
 
@@ -66,7 +65,6 @@
             <button onclick="restartGame()">🔁 Jugar otra vez</button>
         </div>
     </div>
-
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="app.js"></script>

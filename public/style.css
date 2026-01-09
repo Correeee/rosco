@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'Games';
   src: url('fonts/games/games.woff2') format('woff2'),
-       url('fonts/games/games.ttf') format('truetype');
+    url('fonts/games/games.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -36,7 +36,7 @@ body {
   padding: 26px;
   border-radius: 20px;
   text-align: center;
-  box-shadow: 0 30px 80px rgba(0,0,0,.35);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, .35);
 }
 
 /* =========================
@@ -76,7 +76,7 @@ input {
 
 input:focus {
   border-color: #2196f3;
-  box-shadow: 0 0 0 3px rgba(33,150,243,.15);
+  box-shadow: 0 0 0 3px rgba(33, 150, 243, .15);
 }
 
 #answer {
@@ -157,7 +157,7 @@ button:disabled {
   background: #2196f3;
   color: #fff;
   transform: scale(1.25);
-  box-shadow: 0 6px 20px rgba(33,150,243,.5);
+  box-shadow: 0 6px 20px rgba(33, 150, 243, .5);
 }
 
 .rosco-letter.correct {
@@ -175,11 +175,12 @@ button:disabled {
   color: #000;
 }
 
-#question{
+#question {
   max-width: 450px;
   text-align: center;
 }
-#feedback{
+
+#feedback {
   color: black;
 }
 
@@ -203,8 +204,8 @@ button:disabled {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: inset 0 0 0 2px rgba(255,255,255,.1),
-              0 10px 30px rgba(0,0,0,.5);
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .1),
+    0 10px 30px rgba(0, 0, 0, .5);
 }
 
 /* =========================
@@ -215,7 +216,7 @@ button:disabled {
   display: flex;
   justify-content: center;
   gap: 16px;
-  margin: 25px 0;
+  margin: 5px 0;
 }
 
 .player-score {
@@ -223,7 +224,7 @@ button:disabled {
   border-radius: 14px;
   padding: 14px 18px;
   min-width: 150px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.12);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .12);
 }
 
 .player-score.active {
@@ -253,7 +254,7 @@ button:disabled {
 .end-screen {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,.75);
+  background: rgba(0, 0, 0, .75);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -266,7 +267,7 @@ button:disabled {
   padding: 32px 40px;
   min-width: 320px;
   text-align: center;
-  box-shadow: 0 30px 80px rgba(0,0,0,.5);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, .5);
   animation: popIn .4s ease;
 }
 
@@ -275,6 +276,7 @@ button:disabled {
     transform: scale(.85);
     opacity: 0;
   }
+
   to {
     transform: scale(1);
     opacity: 1;
@@ -306,10 +308,11 @@ button:disabled {
 
 /* MODIFICACIONES */
 
-#turn, .player-name{
-    color: red;
-    text-transform: uppercase;
-    font-weight: bold;
+#turn,
+.player-name {
+  color: red;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 
@@ -317,7 +320,7 @@ button:disabled {
 @media (max-width: 480px) {
 
   .container {
-    max-width: 100%;
+    min-width: 90vw;
     margin: 0;
     min-height: 100vh;
     border-radius: 0;
@@ -357,7 +360,6 @@ button:disabled {
 
   /* BOTONES */
   button {
-    width: 100%;
     margin: 6px 0;
     padding: 14px;
     font-size: 14px;
@@ -370,13 +372,32 @@ button:disabled {
 
   /* SCOREBOARD */
   .scoreboard {
-    flex-direction: column;
+    flex-direction: row;
     gap: 12px;
   }
 
   .player-score {
     min-width: auto;
     width: 100%;
+    font-size: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .player-name {
+    font-size: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+  }
+
+  .player-points {
+    font-size: 12px;
   }
 
   /* END SCREEN */
@@ -399,6 +420,54 @@ button:disabled {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-4px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* FONDOS */
+
+body {
+  background-image: url(/images/background.webp);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: black;
+}
+
+#logo {
+  width: 100px;
+  height: 100px;
+}
+
+#game {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+#btnMute {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+button.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
+nav {
+  overscroll-behavior: contain;
+  touch-action: none;
 }
