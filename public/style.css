@@ -208,9 +208,12 @@ button:disabled {
   }
 
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 526px) {
   .center-letter {
     top: 50%;
+  }
+  .rosco-container{
+    height: 300px;
   }
 }
 
