@@ -366,7 +366,6 @@ button:disabled {
   .rosco-container {
     position: relative;
     width: 100%;
-    max-width: 260px;
     /* 👈 probá 240–280 */
     aspect-ratio: 1 / 1;
     /* 👈 cuadrado perfecto */
